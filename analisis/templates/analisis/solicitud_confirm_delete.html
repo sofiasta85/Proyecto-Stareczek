@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+
+    <h2>Eliminar solicitud</h2>
+
+    <div class="alert alert-danger">
+        ¿Estás segura/o que querés borrar esta solicitud?
+        <br><strong>{{ object.nombre_solicitante }} – {{ object.get_tipo_solicitud_display }}</strong>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+        <a href="{% url 'analisis:listar-solicitudes' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Listado de Solicitudes</h1>
+
+{% if solicitudes %}
+    <ul class="list-group">
+        {% for solicitud in solicitudes %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ solicitud.nombre_solicitante }} – {{ solicitud.get_tipo_solicitud_display }}</span>
+            <span>
+                <a class="btn btn-info btn-sm" href="{% url 'analisis:detalle-solicitud' solicitud.pk %}">Detalle</a>
+                <a class="btn btn-warning btn-sm" href="{% url 'analisis:editar-solicitud' solicitud.pk %}">Editar</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'analisis:borrar-solicitud' solicitud.pk %}">Eliminar</a>
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay solicitudes creadas.</p>
+{% endif %}
+
+<a href="{% url 'analisis:crear-solicitud' %}" class="btn btn-primary mt-3">Crear nueva solicitud</a>
+{% endblock %}

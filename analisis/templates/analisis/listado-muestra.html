@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Listado de Muestras</h1>
+
+{% if muestras %}
+  <ul>
+    {% for m in muestras %}
+      <li>
+        {{ m.codigo_id_muestra }} — {{ m.raza }} —
+        <a href="{% url 'analisis:detalle-muestra' m.pk %}">Detalle</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'analisis:editar-muestra' m.pk %}">Editar</a>
+          <a href="{% url 'analisis:borrar-muestra' m.pk %}">Eliminar</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No hay muestras cargadas.</p>
+{% endif %}
+
+<a href="{% url 'analisis:crear-muestra' %}" class="btn btn-primary mt-3">Crear nueva muestra</a>
+{% endblock %}

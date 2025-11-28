@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    
+    <h2 class="mb-4">Eliminar muestra</h2>
+
+    <div class="alert alert-warning">
+        <strong>¿Estás seguro que querés eliminar esta muestra?</strong><br>
+        Esta acción no puede deshacerse.
+    </div>
+
+    <div class="card p-3 mb-3">
+        <p><strong>Código:</strong> {{ object.codigo_id_muestra }}</p>
+        <p><strong>Raza:</strong> {{ object.raza }}</p>
+        {% if object.RP %}
+            <p><strong>RP:</strong> {{ object.RP }}</p>
+        {% endif %}
+        {% if object.BU %}
+            <p><strong>BU:</strong> {{ object.BU }}</p>
+        {% endif %}
+        <p><strong>Sexo:</strong> {{ object.get_sexo_display }}</p>
+
+        {% if object.imagen_muestra %}
+            <p><strong>Imagen:</strong></p>
+            <img src="{{ object.imagen_muestra.url }}" alt="Imagen de la muestra" class="img-fluid rounded" style="max-width: 250px;">
+        {% endif %}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, borrar definitivamente</button>
+        <a href="{% url 'analisis:listado-muestra' %}" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+
+</div>
+{% endblock %}

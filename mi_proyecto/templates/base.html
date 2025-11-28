@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Mi Proyecto{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav>
+  <!-- Siempre visibles -->
+  <a href="{% url 'analisis:inicio' %}">Inicio</a>
+
+  {% if user.is_authenticated %}
+      <!-- SOLO usuario logueado -->
+      <a href="{% url 'analisis:listado-muestra' %}">Muestras</a>
+      <a href="{% url 'analisis:listar-solicitudes' %}">Solicitudes</a>
+      <a href="{% url 'analisis:crear-solicitud' %}">Crear Solicitud</a>
+      <a href="{% url 'analisis:crear-muestra' %}">Crear Muestra</a>
+      <a href="{% url 'usuarios:cerrar_sesion' %}">Cerrar sesión</a>
+
+  {% else %}
+      <!-- SOLO usuario NO logueado -->
+      <a href="{% url 'analisis:sobre-mi' %}">Sobre mi</a>
+      <a href="{% url 'usuarios:acceder' %}">Acceder</a>
+      <a href="{% url 'usuarios:registro' %}">Registrarme</a>
+  {% endif %}
+</nav>
+
+{% if messages %}
+  <ul>
+    {% for m in messages %}
+      <li>{{ m }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Detalle de Muestra</h1>
+
+<p><strong>Código:</strong> {{ object.codigo_id_muestra }}</p>
+<p><strong>BU:</strong> {{ object.BU }}</p>
+<p><strong>RP:</strong> {{ object.RP }}</p>
+<!-- lo que quieras mostrar -->
+
+<a href="{% url 'analisis:listado-muestra' %}">Volver</a>
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Detalle de Solicitud</h1>
+
+<p><strong>ID:</strong> {{ object.id }}</p>
+<p><strong>Solicitante:</strong> {{ object.nombre_solicitante }}</p>
+<p><strong>Correo:</strong> {{ object.correo }}</p>
+<p><strong>Tipo de análisis:</strong> {{ object.tipo_analisis }}</p>
+<p><strong>Fecha:</strong> {{ object.fecha_solicitud }}</p>
+<p><strong>Datos adicionales:</strong> {{ object.datos_adicionales }}</p>
+
+
+<a href="{% url 'analisis:listar-solicitudes' %}">Volver</a>
+
+{% endblock %}

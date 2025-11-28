@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Iniciar sesión</h1>
+
+{% if form.errors %}
+    <div style="color: red;">
+        <p>Usuario o contraseña incorrectos.</p>
+    </div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Ingresar</button>
+</form>
+
+<p>¿No tenés cuenta?
+    <a href="{% url 'usuarios:registro' %}">Registrarme</a>
+</p>
+{% endblock %}

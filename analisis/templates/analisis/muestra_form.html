@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>
+  {% if object %}
+    Editar Muestra: {{ object.codigo_id_muestra }}
+  {% else %}
+    Crear Nueva Muestra
+  {% endif %}
+</h1>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button type="submit">
+    {% if object %}Guardar Cambios{% else %}Crear{% endif %}
+  </button>
+</form>
+
+<a href="{% url 'analisis:listado-muestra' %}">Volver al listado</a>
+{% endblock %}
